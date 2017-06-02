@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_restartNotificationListener"
+        android:icon="@mipmap/ic_launcher"
+        android:orderInCategory="1"
+        android:title="重启通知监听服务"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_about"
+        android:orderInCategory="2"
+        android:title="关于"
+        app:showAsAction="never" />
+</menu>
