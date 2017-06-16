@@ -26,7 +26,7 @@ public class CoreService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (bluetoothLeService != null){
-                String str = intent.getStringExtra("type") + "||" + intent.getStringExtra("msg") + "\n\r\n";
+                String str = intent.getStringExtra("type") + intent.getStringExtra("msg") + "\r\n";
                 System.out.println(str);
                 bluetoothLeService.WriteValue(str);
             }
