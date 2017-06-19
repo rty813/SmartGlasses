@@ -7,8 +7,13 @@
         android:title="重启通知监听服务"
         app:showAsAction="never" />
     <item
+        android:id="@+id/menu_testNotification"
+        app:showAsAction="never"
+        android:title="测试通知监听服务"
+        android:orderInCategory="2"/>
+    <item
         android:id="@+id/menu_about"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:title="关于"
         app:showAsAction="never" />
 </menu>

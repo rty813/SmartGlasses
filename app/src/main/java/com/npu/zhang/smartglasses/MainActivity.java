@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (!notificationListenerEnable()){
+            Toast.makeText(this, "请赋予通知监听权限", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
             startActivity(intent);
         }
@@ -171,6 +172,10 @@ public class MainActivity extends AppCompatActivity {
                         .setIcon(R.mipmap.ic_launcher)
                         .setMessage("by 西工大")
                         .show();
+                break;
+            case R.id.menu_testNotification:
+                sendBroadcast(new Intent("NPU_ACTION_TEST_NOTIFICATION"));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
