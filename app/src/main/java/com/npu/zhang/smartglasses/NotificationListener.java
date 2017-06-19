@@ -38,6 +38,7 @@ public class NotificationListener extends NotificationListenerService {
             public void onReceive(Context context, Intent intent) {
                 if (intent.getAction().equals("NPU_ACTION_TEST_NOTIFICATION")){
                     manager.notify(100, notification);
+                    Toast.makeText(NotificationListener.this, "通知服务正常！", Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -64,7 +65,6 @@ public class NotificationListener extends NotificationListenerService {
                 type = WECHAT;
                 break;
             case "com.npu.zhang.smartglasses":
-                Toast.makeText(NotificationListener.this, "通知监听正常！", Toast.LENGTH_SHORT).show();
                 type = TEST;
                 break;
             default:
