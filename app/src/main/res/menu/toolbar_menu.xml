@@ -12,8 +12,14 @@
         android:title="测试通知监听服务"
         android:orderInCategory="2"/>
     <item
+        android:id="@+id/menu_stopCoreService"
+        app:showAsAction="never"
+        android:title="终止服务"
+        android:orderInCategory="3"/>
+
+    <item
         android:id="@+id/menu_about"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="关于"
         app:showAsAction="never" />
 </menu>

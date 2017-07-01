@@ -176,6 +176,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_testNotification:
                 sendBroadcast(new Intent("NPU_ACTION_TEST_NOTIFICATION"));
                 break;
+            case R.id.menu_stopCoreService:
+                sendBroadcast(new Intent("NPU_ACTION_GATT_DISCONNECTED"));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

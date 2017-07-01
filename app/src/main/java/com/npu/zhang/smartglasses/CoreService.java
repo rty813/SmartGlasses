@@ -28,6 +28,7 @@ public class CoreService extends Service {
             if (bluetoothLeService != null){
 //                String str = intent.getStringExtra("type") + intent.getStringExtra("msg") + "\r\n";
                 String str = intent.getStringExtra("type");
+                Toast.makeText(CoreService.this, str, Toast.LENGTH_SHORT).show();
                 System.out.println(str);
                 bluetoothLeService.WriteValue(str);
             }
@@ -80,7 +81,7 @@ public class CoreService extends Service {
     public void onDestroy() {
         super.onDestroy();
         System.out.println("CoreService被摧毁啦！onDestory");
-        Toast.makeText(CoreService.this, "蓝牙连接失败！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CoreService.this, "蓝牙连接已断开，核心服务停止！", Toast.LENGTH_SHORT).show();
 //        isStoped = true;
         unregisterReceiver(stateReceiver);
         unregisterReceiver(mReceiver);
