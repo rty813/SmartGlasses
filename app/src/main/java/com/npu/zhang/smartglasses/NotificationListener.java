@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Handler;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.support.v4.app.NotificationCompat;
@@ -17,6 +18,7 @@ public class NotificationListener extends NotificationListenerService {
     private final String QQ = "3";
     private final String WECHAT = "4";
     private final String TEST = "0";
+    private final String STOP = "1";
 
 
 
@@ -75,6 +77,14 @@ public class NotificationListener extends NotificationListenerService {
         intent.putExtra("msg", text);
         intent.putExtra("type", type);
         sendBroadcast(intent);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent stopIntent = new Intent("android.intent.action.BLE_BROADCAST");
+                stopIntent.putExtra("type", STOP);
+                sendBroadcast(stopIntent);
+            }
+        }, 2000);
         super.onNotificationPosted(sbn);
     }
 

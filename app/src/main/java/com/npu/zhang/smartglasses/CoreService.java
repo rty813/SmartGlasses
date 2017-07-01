@@ -19,14 +19,15 @@ public class CoreService extends Service {
     private String addr;
 
     private boolean isBindBleService = false;
-    private boolean isStoped = false;
+//    private boolean isStoped = false;
 
     //接收广播，通过蓝牙串口发送
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (bluetoothLeService != null){
-                String str = intent.getStringExtra("type") + intent.getStringExtra("msg") + "\r\n";
+//                String str = intent.getStringExtra("type") + intent.getStringExtra("msg") + "\r\n";
+                String str = intent.getStringExtra("type");
                 System.out.println(str);
                 bluetoothLeService.WriteValue(str);
             }
@@ -44,14 +45,14 @@ public class CoreService extends Service {
                     unbindService(mServiceConnection);
                 }
                 isBindBleService = false;
-                isStoped = true;
+//                isStoped = true;
                 stopSelf();
             }
             if (action.equals(BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED)){
                 System.out.println("绑定成功");
                 Toast.makeText(CoreService.this, "绑定成功", Toast.LENGTH_LONG).show();
-                new SendTime().start();
-                isStoped = false;
+//                new SendTime().start();
+//                isStoped = false;
             }
         }
     };
@@ -80,7 +81,7 @@ public class CoreService extends Service {
         super.onDestroy();
         System.out.println("CoreService被摧毁啦！onDestory");
         Toast.makeText(CoreService.this, "蓝牙连接失败！", Toast.LENGTH_SHORT).show();
-        isStoped = true;
+//        isStoped = true;
         unregisterReceiver(stateReceiver);
         unregisterReceiver(mReceiver);
         if (isBindBleService){
@@ -120,30 +121,30 @@ public class CoreService extends Service {
         }
     };
 
-    private class SendTime extends Thread{
-        @Override
-        public void run() {
-            while(true){
-                if (isStoped){
-                    break;
-                }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                long time=System.currentTimeMillis();
-                SimpleDateFormat format=new SimpleDateFormat("HH:mm:ss");
-                Date d1=new Date(time);
-                String t1=format.format(d1);
-                Intent intent = new Intent("android.intent.action.BLE_BROADCAST");
-                intent.putExtra("msg", t1);
-                intent.putExtra("type", "1");
-                sendBroadcast(intent);
-            }
-            super.run();
-        }
-    }
+//    private class SendTime extends Thread{
+//        @Override
+//        public void run() {
+//            while(true){
+//                if (isStoped){
+//                    break;
+//                }
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                long time=System.currentTimeMillis();
+//                SimpleDateFormat format=new SimpleDateFormat("HH:mm:ss");
+//                Date d1=new Date(time);
+//                String t1=format.format(d1);
+//                Intent intent = new Intent("android.intent.action.BLE_BROADCAST");
+//                intent.putExtra("msg", t1);
+//                intent.putExtra("type", "1");
+//                sendBroadcast(intent);
+//            }
+//            super.run();
+//        }
+//    }
 
     @Override
     public void onLowMemory() {
